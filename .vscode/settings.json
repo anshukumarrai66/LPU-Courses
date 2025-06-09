@@ -1,0 +1,7 @@
+{
+    "markdown.styles": [
+        ".markdown-CSS\\markdown-style.css"
+    ],
+    // "livePreview.hostIP": "192.168.1.7"
+    "livePreview.hostIP": "127.0.0.1"
+}

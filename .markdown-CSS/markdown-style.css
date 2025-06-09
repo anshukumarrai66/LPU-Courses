@@ -1,0 +1,102 @@
+/* Base style */
+body {
+    font-family: "Fira Code", Consolas, Monaco, monospace;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 2.5rem;
+    line-height: 1.8;
+    font-size: 1.15rem;
+  }
+  
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    color: #4FC3F7;
+    border-bottom: 1px solid #444;
+    padding-bottom: 0.3rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  h1 { font-size: 2.4rem; }
+  h2 { font-size: 2.1rem; }
+  h3 { font-size: 1.8rem; }
+  h4 { font-size: 1.5rem; }
+  h5 { font-size: 1.2rem; }
+  
+  /* Paragraphs */
+  p {
+    margin: 1rem 0;
+  }
+  
+  /* Inline code */
+  code {
+    background-color: #2d2d2d;
+    color: #c792ea;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    font-size: 1.1em;
+  }
+  
+  /* Code blocks */
+  pre {
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    padding: 1rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  /* Links */
+  a {
+    color: #82AAFF;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Lists */
+  ul, ol {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+  }
+  li {
+    margin-bottom: 0.6rem;
+    font-size: 1.5rem;
+    line-height: 1.7;
+  }
+  
+  /* Blockquotes */
+  blockquote {
+    border-left: 4px solid #4FC3F7;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background-color: #2a2a2a;
+    color: #ccc;
+    font-style: italic;
+    border-radius: 4px;
+  }
+  
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+  th, td {
+    border: 1px solid #444;
+    padding: 0.75rem;
+  }
+  th {
+    background-color: #333;
+    color: #ffcb6b;
+  }
+  
+  /* Horizontal Rule */
+  hr {
+    border: 0;
+    border-top: 1px solid #444;
+    margin: 2rem 0;
+  }
+  

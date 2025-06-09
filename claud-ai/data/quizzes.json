@@ -1,0 +1,103 @@
+{
+  "css": [
+    {
+      "question": "qwerty",
+      "answers": ["a1", "a2", "a3", "a4"],
+      "correct": 1
+    },
+    {
+      "question": "CSS is?",
+      "answers": [
+        "Programming Language",
+        "Hypertext Markup Language",
+        "Cascading Style Sheet",
+        "None of these"
+      ],
+      "correct": 2,
+      "explanation": "Cascading Style Sheets (CSS) is a style sheet language used for specifying the presentation and styling of a document written in a markup language such as HTML or XML"
+    },
+    {
+      "question": "CSS is?",
+      "answers": ["safd", "asdf", "saf", "sdfa"],
+      "correct": 2,
+      "explanation": "css is a cascading style sheet which helps in styling html and xml files on browser.\n\nExample:\n```\n.p {\n   color: yellow;\n   font-size: 34px;\n}\n```"
+    },
+    {
+      "question": "which one is flex box item property?",
+      "answers": ["vvzxbdgs", "gsddgs", "sdgfdgsdg", "nxcvbcvx"],
+      "correct": 1,
+      "explanation": "cvCdzfcsdfvzxvdsgecxzvsgevzxcdfsadegvd\n\n```\n xczvxczv xzvbxvbxvxzx\n    gsgdgdfgsd\n```"
+    },
+    {
+      "question": "CSS isa a? ",
+      "answers": ["asfdsa", "sdfsf", "asdfas", "fasdf"],
+      "correct": 2,
+      "code": "[data-theme=\"dark\"] pre code {\n  background: #2c2c2c;\n  color: #f8f8f8;\n}\n\n[data-theme=\"dark\"] form {\n  background-color: #2a2a2a;\n  color: #f1f1f1;\n  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);\n}\n\n[data-theme=\"dark\"] pre code {\n  background: #2c2c2c;\n  color: #f8f8f8;\n}\n\n[data-theme=\"dark\"] form {\n  background-color: #2a2a2a;\n  color: #f1f1f1;\n  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);\n}\n\n\n[data-theme=\"dark\"] pre code {\n  background: #2c2c2c;\n  color: #f8f8f8;\n}\n\n[data-theme=\"dark\"] form {\n  background-color: #2a2a2a;\n  color: #f1f1f1;\n  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);\n}\n\n\n[data-theme=\"dark\"] pre code {\n  background: #2c2c2c;\n  color: #f8f8f8;\n}\n\n[data-theme=\"dark\"] form {\n  background-color: #2a2a2a;\n  color: #f1f1f1;\n  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);\n}",
+      "explanation": "safasdfsda\n```\n[data-theme=\"dark\"] pre code {\n  background: #2c2c2c;\n  color: #f8f8f8;\n}\n\n[data-theme=\"dark\"] form {\n  background-color: #2a2a2a;\n  color: #f1f1f1;\n  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);\n}\n```"
+    }
+  ],
+  "python": [
+    {
+      "question": "which one is not used in python?",
+      "answers": ["br", "if", "while", "for"],
+      "correct": 0
+    },
+    {
+      "question": "python is ? which one is not correct?",
+      "answers": [
+        "programming language",
+        "can be used for automation",
+        "Hypertext Markup Language",
+        "none of these"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "What is a correct syntax to output \"Hello World\" in Python?",
+      "answers": [
+        "echo \"Hello World!\"",
+        "p(\"Hello World!\")",
+        "print(\"Hello World!\")",
+        "echo(\"Hello World!\")"
+      ],
+      "correct": 2,
+      "explanation": "abc"
+    },
+    {
+      "question": "What is python?",
+      "answers": [
+        "Hypertext Markup Language",
+        "Programming Language",
+        "Cascading Style Sheet",
+        "None of these"
+      ],
+      "correct": 1,
+      "explanation": "Python is a high-level, general-purpose programming language designed for code readability, with a syntax that emphasizes the use of significant whitespace.\n\n\n```\nname = \"John\"\nage = 56\n\nprint(f\"{name=}, {age=}\")\n```"
+    }
+  ],
+  "bash": [
+    {
+      "question": "which one is not from bash syntax?",
+      "answers": ["if", "read", "echo", "p tag"],
+      "correct": 3,
+      "code": "if: {\n----\n}\nelse{\n---\n}\nfi",
+      "explanation": "p tag: It is a HTML tag. Paragraph tag <p></p>"
+    }
+  ],
+  "javascript": [
+    {
+      "question": "javascript is used mostly used on browsers:",
+      "answers": ["yes", "no", "50-50", "i don't know"],
+      "correct": 0
+    }
+  ],
+  "html": [
+    {
+      "question": "aljklfjsd",
+      "answers": ["jklfjals", "asdfsdaf", "asfdsadfdas"],
+      "correct": 0,
+      "code": "lkjasjlfafj",
+      "explanation": "dsafsdaf\n```\n\ngafdsafsdf\n\n```"
+    }
+  ]
+}

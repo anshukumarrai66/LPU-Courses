@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modular Quiz App</title>
+  <link rel="stylesheet" href="style.css" /> <!-- optional custom CSS -->
+</head>
+<body data-theme="light">
+  <div id="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <div class="logo-circle">Q</div>
+            <span>LOGO</span>
+          </div>
+          <nav class="nav-links">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link">HTML</a>
+            <a href="#" class="nav-link">CSS</a>
+            <a href="#" class="nav-link">JavaScript</a>
+            <a href="#" class="nav-link">Python</a>
+            <a href="#" class="nav-link">Bash</a>
+          </nav>
+          <div class="header-actions">
+            <button id="theme-toggle" class="dark-mode-toggle">🌙</button>
+            <button class="notification">🔔</button>
+            <div class="profile">
+              <div class="profile-pic"></div>
+              <span id="profile-name">Profile pic</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sub Navigation -->
+    <div class="sub-nav">
+      <div class="container">
+        <div class="sub-nav-content">
+          <button class="sub-nav-btn active" data-page="home">🏠 Home</button>
+          <button class="sub-nav-btn" data-page="create">⚡ Create Quiz</button>
+          <button class="sub-nav-btn" data-page="take">📝 Take Quiz</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Home Page -->
+        <div id="home-page" class="page home-page">
+          <h1 class="home-title">
+            <span class="graduation-cap">🎓</span>Welcome to Quiz
+          </h1>
+          <h2 class="home-subtitle">Home Page</h2>
+        </div>
+
+        <!-- Create Quiz Page -->
+        <div id="create-page" class="page create-quiz-page hidden">
+          <div class="instructions-panel">
+            <h3 class="instructions-title">Instructions about this form</h3>
+            <div class="instructions-content">
+              <p><strong>How to fill explanation section:</strong></p>
+              <p>Use paragraphs normally. Use triple backticks for code blocks.</p>
+              <div class="code-example">
+                ```<br />a {<br />&nbsp;&nbsp;color: yellow;<br />&nbsp;&nbsp;background: black;<br />}<br />```
+              </div>
+            </div>
+          </div>
+
+          <form class="quiz-form" id="quiz-form">
+            <div class="form-group">
+              <label class="form-label">Category</label>
+              <input type="text" class="form-input" id="category" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Question</label>
+              <input type="text" class="form-input" id="question" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Question Detail (optional)</label>
+              <textarea class="form-textarea" id="question-detail"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Option A</label>
+              <input type="text" class="form-input" id="option-a" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Option B</label>
+              <input type="text" class="form-input" id="option-b" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Option C</label>
+              <input type="text" class="form-input" id="option-c" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Option D</label>
+              <input type="text" class="form-input" id="option-d" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Correct answer (1 to 4)</label>
+              <input type="number" class="form-input" id="correct-answer" min="1" max="4" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Explanation</label>
+              <textarea class="form-textarea" id="explanation"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Preview of Explanation</label>
+              <div class="preview-section" id="explanation-preview">Your explanation preview will appear here...</div>
+            </div>
+            <button type="submit" class="save-btn">💾 Save Quiz</button>
+          </form>
+        </div>
+
+        <!-- Take Quiz Page -->
+        <div id="take-page" class="page take-quiz-page hidden">
+          <div class="quiz-sidebar">
+            <h3>Categories</h3>
+            <ul id="category-list">
+              <li data-category="html">HTML <span class="badge">0</span></li>
+              <li data-category="css">CSS <span class="badge">0</span></li>
+              <li data-category="javascript">JavaScript <span class="badge">0</span></li>
+              <li data-category="python">Python <span class="badge">0</span></li>
+              <li data-category="bash">Bash <span class="badge">0</span></li>
+            </ul>
+            <ul class="question-list" id="question-list"></ul>
+          </div>
+
+          <div class="quiz-main">
+            <div id="quiz-area">
+              <!-- Quiz question will be rendered here by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ✅ Modular JS Entrypoint -->
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

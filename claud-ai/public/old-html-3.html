@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Application</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        body[data-theme="dark"] {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #ecf0f1;
+        }
+
+        body[data-theme="light"] {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2c3e50;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .nav-categories {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .nav-categories li {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-categories li:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        .badge.updated {
+            animation: bounce 0.3s ease;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        #theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(180deg);
+        }
+
+        .notification {
+            font-size: 1.5rem;
+            color: #ffd700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .notification:hover {
+            transform: scale(1.1);
+        }
+
+        .profile {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .profile:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Main Navigation */
+        .main-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem;
+        }
+
+        .nav-btn {
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        body[data-theme="dark"] .nav-btn {
+            background: rgba(52, 73, 94, 0.9);
+            color: #ecf0f1;
+        }
+
+        /* Home Screen */
+        #home-screen {
+            text-align: center;
+            padding: 4rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        #home-screen.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .welcome-title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #fff, #f8f9fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .graduation-cap {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Create Quiz Screen */
+        #create-quiz-screen {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        #create-quiz-screen.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .create-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .instructions {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        .instructions h3 {
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .instructions p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .code-example {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            color: #00ff88;
+            margin: 1rem 0;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.75rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #00ff88;
+            box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+        }
+
+        .answer-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .save-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #00ff88, #00cc6f);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.4);
+        }
+
+        /* Take Quiz Screen */
+        #main-container {
+            display: none;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            gap: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        #main-container.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .quiz-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            height: calc(100vh - 200px);
+        }
+
+        .sidebar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-section h3 {
+            margin-bottom: 1rem;
+            color: #fff;
+            text-align: center;
+        }
+
+        #category-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        #category-list li {
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        #category-list li:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .question-section {
+            margin-top: 2rem;
+        }
+
+        #question-list {
+            list-style: none;
+            max-height: 400px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        #question-list li {
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        #question-list li:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #question-list li.active {
+            background: rgba(0, 255, 136, 0.2);
+            border-left: 4px solid #00ff88;
+        }
+
+        .quiz-main {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .quiz-question-block {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .timer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .timer-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .timer-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+            width: 100%;
+            transition: width 1s linear;
+            border-radius: 3px;
+        }
+
+        .quiz-question-block h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            line-height: 1.4;
+        }
+
+        .quiz-question-block pre {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            border-left: 4px solid #00ff88;
+        }
+
+        .quiz-question-block code {
+            color: #00ff88;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-option {
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .quiz-option.selected {
+            background: rgba(255, 193, 7, 0.3);
+            border-color: #ffc107;
+            transform: scale(1.02);
+        }
+
+        .quiz-option.correct {
+            background: rgba(40, 167, 69, 0.3);
+            border-color: #28a745;
+            animation: correctPulse 0.6s ease;
+        }
+
+        .quiz-option.wrong {
+            background: rgba(220, 53, 69, 0.3);
+            border-color: #dc3545;
+            animation: wrongShake 0.6s ease;
+        }
+
+        .explanation-block {
+            background: rgba(0, 123, 255, 0.1);
+            border-left: 4px solid #007bff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        .explanation-block strong {
+            color: #fff;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .question-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .question-actions button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-actions button[data-edit] {
+            background: linear-gradient(45deg, #17a2b8, #138496);
+            color: white;
+        }
+
+        .question-actions button[data-delete] {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+            color: white;
+        }
+
+        .question-actions button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        #preview-content {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            min-height: 100px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes correctPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes wrongShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .quiz-layout {
+                grid-template-columns: 250px 1fr;
+            }
+            
+            .create-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .nav-categories {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .quiz-layout {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .sidebar {
+                order: 2;
+            }
+            
+            .welcome-title {
+                font-size: 2.5rem;
+            }
+            
+            .answer-inputs {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo">LOGO</div>
+            <ul class="nav-categories" id="category-list">
+                <li onclick="goHome()">Home</li>
+                <li data-category="html">HTML <span class="badge">0</span></li>
+                <li data-category="css">CSS <span class="badge">0</span></li>
+                <li data-category="javascript">JavaScript <span class="badge">0</span></li>
+                <li data-category="python">Python <span class="badge">0</span></li>
+                <li data-category="bash">Bash <span class="badge">0</span></li>
+            </ul>
+        </div>
+        <div class="header-right">
+            <button id="theme-toggle">🌙</button>
+            <div class="notification">🔔 Name!</div>
+            <div class="profile">Profile pic</div>
+        </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <button class="nav-btn" onclick="goHome()">🏠 Home</button>
+        <button class="nav-btn" onclick="showSection('create')">⚡ Create Quiz</button>
+        <button class="nav-btn" onclick="showSection('take')">📝 Take Quiz</button>
+    </nav>
+
+    <!-- Home Screen -->
+    <section id="home-screen">
+        <div class="graduation-cap">🎓</div>
+        <h1 class="welcome-title">Welcome to Quiz Home Page</h1>
+    </section>
+
+    <!-- Create Quiz Screen -->
+    <section id="create-quiz-screen" class="hidden">
+        <div class="create-container">
+            <div class="instructions">
+                <h3>Instructions about this form</h3>
+                <p>How to fill explanation section:</p>
+                <p>Normal paragraph ko as a text hi likh do.</p>
+                <p>But agar code likhna hai toh ye teen (```) ke bich mein hi likhna.</p>
+                <p><strong>Example:</strong></p>
+                <p>This is a paragraph this paragraph is written as an example for writing in explanation section.</p>
+                <div class="code-example">
+```<br>
+a {<br>
+&nbsp;&nbsp;color: yellow;<br>
+&nbsp;&nbsp;background: black;<br>
+}<br>
+```
+                </div>
+            </div>
+            
+            <form id="quiz-form" class="form-container">
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" required>
+                        <option value="">Select Category</option>
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="python">Python</option>
+                        <option value="bash">Bash</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="question">Question</label>
+                    <input type="text" id="question" placeholder="Enter your question" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="code">Question (optional) (textarea)</label>
+                    <textarea id="code" rows="4" placeholder="Optional code snippet"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Answer Options</label>
+                    <div class="answer-inputs">
+                        <input type="text" class="answer" placeholder="Option A" required>
+                        <input type="text" class="answer" placeholder="Option B" required>
+                        <input type="text" class="answer" placeholder="Option C">
+                        <input type="text" class="answer" placeholder="Option D">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="correct">Correct answer (enter numerical value from 1 to 4)</label>
+                    <input type="number" id="correct" min="1" max="4" placeholder="Enter 1-4" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="explanation">Explanation (optional) (textarea)</label>
+                    <textarea id="explanation" rows="4" placeholder="Explain why this answer is correct"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Preview of Explanation</label>
+                    <div id="preview-content"></div>
+                </div>
+
+                <button type="submit" class="save-btn">💾 Save Quiz</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Take Quiz Screen -->
+    <section id="main-container" class="hidden">
+        <div class="quiz-layout">
+            <aside class="sidebar">
+                <div class="category-section">
+                    <h3 id="selected-category">Html</h3>
+                </div>
+                
+                <div class="question-section">
+                    <ul id="question-list">
+                        <!-- Questions will be populated here -->
+                    </ul>
+                </div>
+            </aside>
+
+            <main class="quiz-main">
+                <div id="quiz-area">
+                    <!-- Quiz content will be populated here -->
+                    <div class="progress-bar">Q1 of Q20</div>
+                    <div class="quiz-question-block">
+                        <div id="question-timer" class="timer">⏱️ Timer <span>(here progress bar)</span></div>
+                        <div class="timer-bar">
+                            <div class="timer-fill"></div>
+                        </div>
+                        <h3>Q1. abc........</h3>
+                        <pre><code>print("Hello World!")</code></pre>
+                        <div class="quiz-options">
+                            <div class="quiz-option">Yes</div>
+                            <div class="quiz-option">No</div>
+                            <div class="quiz-option">May be</div>
+                            <div class="quiz-option">I don't know</div>
+                        </div>
+                        <div class="explanation-block">
+                            <strong>Reason/Explanation:</strong>
+                            Yes, because print("Hello World") is correct.
+                        </div>
+                        <div class="question-actions">
+                            <button data-edit>✏️ Edit Quiz</button>
+                            <button data-delete>🗑️ Delete Quiz</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </section>
+
+    <!-- JavaScript Modules -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
