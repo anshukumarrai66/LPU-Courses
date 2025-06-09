@@ -114,3 +114,127 @@ Tuples support several operations like concatenation, repetition, membership che
 ## Summary
 
 Tuples are simple, immutable sequences that can store multiples values. Their immutabiility makes them useful when you want to ensure data integrity and optimize performance. Understanding tuples is essential for effective Python programming.
+
+
+# Python Tuple - Basic Operation
+
+## Basic Operations
+
+### Accessing Elements
+
+    colors = ("red", "green", "blue")
+
+    # Indexing (zero-based)
+    first_color = colors[0]   # "red"
+    last_color = colors[-1]   # "blue"
+
+
+    # Slicing
+    subset = colors[0:2]      # ("red", "green")
+
+    print(first_color)
+    print(last_color)
+    print(subset)
+
+
+### Concatenation
+
+    tuple1 = (1, 2, 3)
+    tuple2 = (4, 5, 6)
+
+    # Using `+` Operator
+    combined = tuple1 + tuple2 # (1, 2, 3, 4, 5, 6)
+    print(combined)
+
+
+### Repetition
+
+    # Using `*` operator
+    repeated = (1, 2) * 3  # (1, 2, 1, 2, 1, 2)
+    print(repeated)
+
+### Membership Testing
+
+    colors = ("red", "green", "blue")
+
+    # Using `in` operator
+    is_present = "green" in colors    # True
+    not_present = "yellow" in colors  # False
+
+    print(is_present)
+    print(not_present)
+
+### Unpacking
+
+    # Tuple unpacking
+    person = ("Alice", 25, "Engineer")
+    name, age, profession = person
+    print(name, age, profession)
+
+    # Extended unpacking (Python 3.x)
+    numbers = (1, 2, 3, 4, 5)
+    first, *middle, last = numbers  # first=1, middle=[2, 3, 4], last=5
+    print(first)
+    print(middle)
+    print(last)
+
+## Immutability Concept
+
+Tuples are immutable, meaning their contents cannot be changed after creation. This fundamental property has several implications:
+
+    colors = ("red", "green", "blue")
+
+    # This will raise a TypeError
+    colors[0] = "yellow"
+
+    # To "modify" a tuple, you must create a new one
+    colors = ("yellow",) + colors[1:]   # ("yellow", "green", "blue")
+    print(colors)
+
+### Immutability Benefits:
+
+- **Data Integrity:** Prevents accidental modification
+
+- **Thread Safety:** Can be shared between threads without locks
+
+- **Hashability:** Can be used as dictionary keys or in sets
+
+ ### Tuples offer several performance benefits compared to lists:
+
+ - Memory Efficiency:
+    - Use less memory than lists for the same elements
+    - Fixed size allocation (no over-allocation)
+- Speed Advantages:
+    - Faster creation and access times
+    - Optimized for iteration
+
+## Performance Advantages Over Lists
+
+    # Implementation Differences:
+
+    import sys
+    # Memory comparison
+    list_ex = [1, 2, 3, 4, 5]
+    tuple_ex = (1, 2, 3, 4, 5)
+    print(f"List size: {sys.getsizeof(list_ex)} bytes")
+    print(f"Tuple size: {sys.getsizeof(tuple_ex)} bytes")
+
+
+# Python Tuple - Accessing Elements
+
+## Positive Indexing
+
+Positive indexing allows access to tuple elements starting from the beginning (left side) of the tuple.
+
+    my_tuple = (10, 20, 30, 40, 50)
+
+    # Accessing elements with positive indices
+
+    first_element = my_tuple[0]   # 10
+    second_element = my_tuple[1]  # 20
+    third_element = my_tuple[2]   # 3o
+
+    print(first_element, second_element, third_element)
+
+- Indexing starts at 0 (zero-based indexing)
+- The index value increases as we move from left to right
