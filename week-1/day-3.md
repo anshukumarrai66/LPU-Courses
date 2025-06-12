@@ -238,3 +238,147 @@ Positive indexing allows access to tuple elements starting from the beginning (l
 
 - Indexing starts at 0 (zero-based indexing)
 - The index value increases as we move from left to right
+
+
+## Negative Indexing
+
+Negative indexing allows access to tuple elements starting from the end (right side) of the tuple.
+
+    my_tuple = (10, 20, 30, 40, 50)
+
+    # Accessing elements with negative indices
+
+    last_element = my_tuple[-1]   # 50
+    second_last = my_tuple[-2]    # 40
+    third_last = my_tuple[-3]     # 30
+
+    print(last_element, second_last, third_last)
+
+- Negative indexing starts at -1 (representing the last element)
+- The index value decreases as we move from right to left.
+
+## Handling Errors
+
+Common errors when accessing tuple elements and how to handle them.
+
+    my_tuple = (1, 2, 3, 4, 5, 6)
+    # my_tuple = (1, 2, 3, 4, 5)
+
+    1. IndexError: Accessing an index out of range
+
+    try
+        element = my_tuple[5]   # IndexError: tuple index out of range 
+    except Index
+        Error as e: print(f"Error: {e}")
+
+    
+    2. Avoid errors by checking length
+
+    if len(my_tuple) > 5:
+        element = my_tuple[5]
+        print(element)
+    else:
+        print("Index out of rane")
+
+## Tuple Unpacking
+
+Tuple unpacking assigns tuple elements to multiple variables in a single operation.
+
+    # Basic unpacking_2 
+
+    coordinates = (10, 20, 30)
+    x, y, z = coordinates
+    print(x)   # 10
+    print(y)   # 20
+    print(z)   # 30
+
+    # Unpacking with * operator (Python 3+)_3
+
+    first, *middle, last = (1, 2, 3, 4, 5)
+    print(first)     # 1
+    print(middle)    # [2, 3, 4]
+    print(last)      # 5
+
+    # Swapping values with tuple unpacking
+
+    a, b = 10, 20
+    a, b = b, a      # Swapping values
+    print(a)         # 20 
+    print(b)         # 10
+
+
+    # Returning multiple values from a function
+
+    def get_dimensions():
+        return (1920, 1080)
+
+    # Invoking
+    
+    width, height = get_dimensions()
+    print(width, height)
+
+
+---
+---
+
+# Accessing Tuple Elements
+
+A tuple in Python is an ordered collection of items which is immutable, meaning its elements cannot be changes after creation. Accessing elements in a tuple is similar to accessing elements in a list. You can access individual elements, slices, and use indexing to retrive data from a tuple.
+
+### Accessing Elements by Index
+
+Each element in a tuple has an index starting from 0 for the first element, 1 for the second, and so on. You can access an element by specifying its index inside square brackets `[]`.
+
+    # Creating a tuple
+    my_tuple = ('apple', 'banana', 'cherry', 'date')
+
+    # Accessing elements by index
+    first_item = my_tuple[0]
+    third_item = my_tuple[2]
+
+    print(first_item)
+    print(third_item)
+
+**Note:** If you try to access an index that is out of range, Python will raise on `IndexError`.
+
+### Accessing Elements Using Negative Indexing
+
+Python supports negative indexing, which means you can access elements starting from the end of the tuple. The last element has an index of `-1`, the second last `-2`, and so forth.
+
+    # Negative indexing example
+    my_tuple = ('apple', 'banana', 'cherry', 'date')
+
+    last_item = my_tuple[-1]
+    second_last_item = my_tuple[-2]
+
+    print(last_item)
+    print(second_last_item)
+
+### Accessing a Slice of a Tuple
+
+You can also access a range of elements (slice) using the colon `:` operator. The syntax is `tuple[start:stop]`, where `start` is the starting index (inclusive) and `stop` is the ending index (exclusive).
+
+    # Accessing a slice of the tuple
+    my_tuple = ('apple', 'banana', 'cherry', 'date')
+    slice_tuple = my_tuple[1:3]
+
+    print(slice_tuple)
+
+### Accessing Tuple Elements - Example
+
+    # Define a tuple
+    fruits = ('apple', 'banana', 'cherry', 'date', 'elderberry')
+
+    # Access first element
+    first = fruits[0]
+
+    # Access last element
+    last = fruits[-1]
+
+    # Access a slice (second to fourth element)
+    middle_slice = fruits[1:4]
+
+    print("First fruit:", first)
+    print("Last fruit:", last)
+    print("Middle slice:", middle_slice)
+
