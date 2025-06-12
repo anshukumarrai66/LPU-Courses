@@ -207,4 +207,16 @@ Tuples can be easily iterared over using various loop constructs, just like othe
     
     # Output: # 10 # 20 # 30
 
-## Accessing Elements with
+## Accessing Elements with Indices
+
+    citites = ("New York", "London", "Tokyo", "Paris")
+
+    # Using indices
+    for i in range(len(cities)):
+        print(f"City #{i+1}: {cities[i]}")
+
+    # Output
+    # City #1: New York
+    # City #2: London
+    # City #3: Tokyo
+    # City #4: Paris
