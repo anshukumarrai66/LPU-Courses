@@ -241,4 +241,38 @@ Set operations in Python are powerful tools to handle unique collections and per
 ---
 ---
 
-# 
+# Python Set
+# Application and Features
+
+### Removing Duplicates
+
+	# Quick way to eliminate duplicates from a list
+	numbers = [1, 2, 2, 3, 3, 3, 4, 5, 5]
+	unique_numbers = list(set(numbers))      # [1, 2, 3, 4, 5]
+	print(unique_numbers)
+
+### Membership Testing
+
+	colors = {"red", "green", "blue"}
+	print("red" in colors)            # True
+	print("yellow" in colors)         # False
+
+### Fast Lookups
+Set membership testing has O(1) average time complexity
+Much faster than lists for large collections
+
+### Find Unique Values
+
+	# Finding all unique words in multiple text documents
+	doc1 = "the quick brown fox jumps over the lazy dog"
+	doc2 = "the five boxing wizards jumps quickly"
+
+	# Convert to sets of words
+	word1 = set(doc1.split())
+	word2 = set(doc2.split())
+
+	# All unique words across both documents 
+	all_unique_words = word1 | word2
+	print(all_unique_words)
+
+
