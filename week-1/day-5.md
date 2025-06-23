@@ -18,7 +18,8 @@
 
 ## Basic Creation and Operations
 
-    # Creating sets empty_set = set()
+    # Creating sets 
+    empty_set = set()
     colors = {"red", "green", "blue"}
 
     # Basic operations
