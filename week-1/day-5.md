@@ -144,8 +144,9 @@ Sets are a powerful and flexible data structure in Python for handling collectio
 
     A = {1, 2, 3}
     B = {3, 4, 5}
-    print(A ^ B)               # {1, 2, 4, 5}
+    print(A ^ B)               # {1, 2, 4, 5} 
     print(A.symmetric_difference(B))  # Same as above
+    # `^` is this known as carat symbol
 
 ### Subset and Superset Checking
 
@@ -164,3 +165,80 @@ Sets are a powerful and flexible data structure in Python for handling collectio
     C = {4, 5, 6}
     print(A.isdisjoint(C))    # True - no comman elements
 
+
+---
+---
+
+# Set Operations
+
+In Python, sets are unordered collections of unique elements. They support various operations that allow you to perform mathematical set operations such as unioun, intersection, difference, and symmetric difference. Understanding these operations is essential for working effectively with sets in Pyhton.
+
+## Basic Set Operations
+
+1. Union
+The union of two sets return a new set containing all unique elements from both sets.
+
+	```
+	# Example of Unioun operation
+	set1 = {1, 2, 3} 
+	set2 = {3, 4, 5} 
+	union_set = set1.union(set2)
+	print(union_set)
+	```
+
+2. Intersection
+The intersection of two sets returns a new set containing only the elements that are present in both sets.
+
+	```
+	# Example of Intersection operation
+	set1 = {1, 2, 3}
+	set2 = {2, 3, 4}
+	intersection_set = set1.intersection(set2)
+	print(intersection_set)
+	```
+
+3. Difference
+The difference between two sets returns a new ser containing elements present in the first set but not in the second.
+
+	```
+	# Example of Difference operation
+	set1 = {1, 2, 3, 4}
+	set2 = {3, 4, 5}
+	difference_set = set1.difference(set2)
+	print(difference_set)
+	```
+
+4. Symmetric Difference
+The symmetric difference of two sets returns a new set with elements in either of the sets but not in both.
+
+	```
+	# Example of symmetric Difference operation
+	set1 = {1, 2, 3}
+	set2 = {3, 4, 5}
+	sys_diff_set = set1.symmetric_difference(set2)
+	print(sys_diff_set)
+	```
+
+### Additional Set Methods
+
+- **issubset():** Returns True if all elements of the set are in another set.
+
+- **issuperset():** Returns True if the set contains all elements of another set.
+
+- **copy():** Returns a shallow copy of the set.
+
+	```
+	# Example of issubset and issuperset
+	a = {1, 2}
+	b = {1, 2, 3, 4}
+	print(a.issubset(b))      # True
+	print(b.issuperset(a))    # True
+	```
+
+## Conclusion
+Set operations in Python are powerful tools to handle unique collections and perform mathematical set theory operations efficiently. Using these methods can simplify your data processing tasks, especially when dealing with large datasets or when the uniqueness of elements is important.
+
+---
+---
+
+# 
