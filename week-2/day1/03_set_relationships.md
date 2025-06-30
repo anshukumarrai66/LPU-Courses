@@ -80,12 +80,14 @@ Python also supports comparison operators to check set relationships:
 - `>` - proper superset
 - `>=` - superset
 
+        ```
 	A = {1, 2}
 	B = {1, 2, 3}
 	print(A < B)     # True: A is a proper subset of B
 	print(B > A)     # True: B is a proper superset of A
 	print(A <= B)    # True: A is a subset of B
 	print(A >= B)    # False: A is not a superset of B
+        ```
 
 5. Practical Use Case
 
