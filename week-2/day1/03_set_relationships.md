@@ -87,4 +87,16 @@ Python also supports comparison operators to check set relationships:
 	print(A <= B)    # True: A is a subset of B
 	print(A >= B)    # False: A is not a superset of B
 
-5.
+5. Practical Use Case
+
+Set relationship are often used in validation scenarios, for example to check whether a user's permissions are convered by the allowed permissions.
+
+	user_permissions = {'read', 'write'}
+	allowed_permissions = {'read', 'write', 'delete'}
+
+	if user_permissions.issubset(allowed_permissions):
+	    print("User has valid permissions.")
+	else:
+	    print("Invalid permissions detected.")
+
+
