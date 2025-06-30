@@ -28,7 +28,7 @@
 - Both require hashable elements
 - Sets have O(1) average lookup time like dict keys
 
-        ```
+	```
 	# Dictionary keys as a set
 	my_dict = {'a': 1, 'b': 2, 'c': 3}
 	keys_set = set(my_dict)
@@ -37,7 +37,7 @@
 	# Common operations
 	common_keys = set(my_dict.keys()) & {'a', 'c', 'd'}
 	print(common_keys)                # {'a', 'c'}
-	```
+ 	```
 
 
 ---
