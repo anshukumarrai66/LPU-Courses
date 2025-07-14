@@ -174,6 +174,7 @@ A dictionary in Python is an unordered collection of key-value pairs. Each key m
 
 1. Creating a Dictionary
 
+	```
 	person = {
 		"name": "Alice",
 		"age": 30,
@@ -181,30 +182,39 @@ A dictionary in Python is an unordered collection of key-value pairs. Each key m
 	}
 
 	print(person)
+	```
 
 
 2. Accessing Values
-
+	
+	```
 	print(person["name"])
 	prin(person["age"])
+	```
 
 
 3. Adding and Updating Entries
 
+	```
 	person["email"] = "alice@example.com"
 	person["age"] = 31
 	print(person)
+	```
 
 4. Removing Entries
 
+	```
 	del person["city"]
 	print(person)
+	```
 
 5. Dictionary Keys, Values, and Items
 
+	```
 	print(person.keys())
 	print(person.values())
 	print(person.items())
+	```
 
 6. Using the get() Method
 
